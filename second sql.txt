@@ -1,0 +1,11 @@
+
+/* Query done to find the artist with the most albums*/
+SELECT DISTINCT
+  ar.name,
+  COUNT(al.AlbumID) number_of_albums
+FROM Artist ar
+JOIN Album al
+  ON al.ArtistId = ar.ArtistId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;

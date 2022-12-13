@@ -1,0 +1,17 @@
+Query done to find Genre types with most amount of songs longer than the average
+
+SELECT
+  t1.Genre_type,
+  COUNT(*) count_of_genre
+FROM (SELECT
+  t.Name,
+  t.Milliseconds,
+  g.Name Genre_type
+FROM Track t
+JOIN Genre g
+  ON t.GenreId = g.GenreId
+WHERE t.Milliseconds > (SELECT
+  AVG(Milliseconds)
+FROM Track)
+ORDER BY 2 DESC) t1
+GROUP BY 1
